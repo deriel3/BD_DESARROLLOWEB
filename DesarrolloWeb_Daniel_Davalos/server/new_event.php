@@ -11,18 +11,12 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     $titulo=$_POST['titulo'];
     $fecha_inicio=$_POST['start_date'];
     $allday=$_POST['allDay'];
-    if($allday)
-    {
+    $allday=0;
+    $fecha_fin=$_POST['end_date'];
+    $hora_fin=$_POST['end_hour'];
+    $hora_inicia=$_POST['start_hour'];
+    if ($fecha_fin=="" && $hora_fin=="" && $hora_inicia=="" ) {
       $allday=1;
-      $fecha_fin="";
-      $hora_fin="";
-      $hora_inicia="";
-    }
-    else {
-      $allday=0;
-      $fecha_fin=$_POST['end_date'];
-      $hora_fin=$_POST['end_hour'];
-      $hora_inicia=$_POST['start_hour'];
     }
     session_start();
     $user=$_SESSION['usuario'];

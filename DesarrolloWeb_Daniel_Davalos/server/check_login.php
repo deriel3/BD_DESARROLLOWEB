@@ -3,8 +3,8 @@
 	if($_SERVER['REQUEST_METHOD']=='POST')
 	{
 
-		  $email=$_POST['em'];
-			$contrasena=$_POST['cont'];
+		  $email=$_POST['username'];
+			$contrasena=$_POST['password'];
 			$verificar_inicio=Ini::verificarusuario($email);
 			if($verificar_inicio)
 			{
@@ -12,9 +12,11 @@
         if (password_verify($contrasena, $hash)) {
 						session_start();
 						$_SESSION['usuario'] = $verificar_inicio['email'];
-            echo 'c';
+						$json=array("msg"=>'OK');
+            echo json_encode($json);
         } else {
-            echo 'i';
+					$json=array("msg"=>'NO');
+					echo json_encode($json);
         }
 			}
 			else
